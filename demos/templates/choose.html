@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Choose</title>
+</head>
+<body>
+    <br>
+    오늘의 날씨의 정보입니다
+    <br>
+    <strong>{{b}}</strong>
+    <br>
+	<form action="{% url 'result' a='gender'%}" method="get"> {# 이부분 확인#}
+		<label for="gender">Gender:</label>
+		<select id="gender" name="gender">
+			<option value="male">남성</option>
+			<option value="female">여성</option>
+		</select><br><br>
+
+		<fieldset id="category-fieldset" hidden>
+			<legend>Category:</legend>
+			<select id="category-select" name="category">
+			</select>
+		</fieldset>
+
+		<button type="button" onclick="showCategories(gender.value)">Show categories</button><br><br>
+		<input type="submit" value="Submit">
+	</form>
+
+	<script>
+		function showCategories(gender) {
+			const categorySelect = document.getElementById("category-select");
+			const categoryDiv = document.getElementById(gender + "-categories");
+			categorySelect.innerHTML = categoryDiv.innerHTML;
+			document.getElementById("category-fieldset").hidden = false;
+		}
+	</script>
+
+	<div id="male-categories" hidden>
+		<select>
+			<option value="shirt">Shirt</option>
+			<option value="pants">Pants</option>
+		</select>
+	</div>
+
+	<div id="female-categories" hidden>
+		<select>
+			<option value="american_casual">아메리칸 캐주얼</option>
+			<option value="casual">캐주얼</option>
+            <option value="seeeek">시크</option>
+			<option value="dandy">댄디</option>
+            <option value="formal">포멀</option>
+			<option value="grilish">걸리시</option>
+            <option value="golf">골프</option>
+			<option value="retro">레트로</option>
+            <option value="romantic">로맨틱</option>
+            <option value="sports">스포츠</option>
+			<option value="street">스트릿</option>
+		</select>
+	</div>
+</body>
+</html>
